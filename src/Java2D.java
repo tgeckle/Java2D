@@ -119,26 +119,29 @@ public class Java2D extends JPanel{
     }
     
     public void calcTransform() {
-        int frameNum = frameNumber % 162;
-        if (frameNum < 54) {
+        int frameNum = frameNumber % 165;
+        if (frameNum < 55) {
             curImage = imageT;
-        } else if (frameNum < 107) {
+        } else if (frameNum < 110) {
             curImage = imageE;
         } else {
             curImage = imageA;
         }
         
-        frameNum = frameNum % 54;
+        frameNum = frameNum % 55;
         
-        if (frameNum < 5) {
+        if (frameNum == 0) {
+            tran = new AffineTransform();
+            tran.translate(100, 100);
+        } else if (frameNum < 6) {
             tran.translate(-1, 0);
-        } else if (frameNum < 12) {
+        } else if (frameNum < 13) {
             tran.translate(0, 1);
-        } else if (frameNum < 21) {
+        } else if (frameNum < 22) {
             tran.rotate(-0.0872665);
-        } else if (frameNum < 39) {
+        } else if (frameNum < 40) {
             tran.rotate(0.0872665);
-        } else if (frameNum < 49) {
+        } else if (frameNum < 50) {
             tran.scale(1.073,1); // After 10 calls should be roughly doubled 
                                  // along the x-axis
         } else {
@@ -178,7 +181,7 @@ public class Java2D extends JPanel{
         panel.curImage = panel.imageT; // Start with 'T' image
         panel.tran.translate(100, 100); // Sets initial position to 100, 100
         
-        Timer timer = new Timer(250, new ActionListener() {
+        Timer timer = new Timer(100, new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 panel.calcTransform();
                 panel.repaint();
